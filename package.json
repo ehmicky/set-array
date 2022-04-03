@@ -1,0 +1,36 @@
+{
+  "name": "set-array",
+  "version": "2.3.0",
+  "type": "module",
+  "exports": "./build/src/main.js",
+  "main": "./build/src/main.js",
+  "types": "./build/src/main.d.ts",
+  "files": [
+    "build/src/**/*.{js,d.ts,map,json,sh,md}"
+  ],
+  "scripts": {
+    "test": "gulp test"
+  },
+  "description": "Set/insert/append/omit multiple array items",
+  "keywords": [],
+  "license": "Apache-2.0",
+  "homepage": "https://bit.ly/3KtfPKu",
+  "repository": "ehmicky/set-array",
+  "bugs": {
+    "url": "https://github.com/ehmicky/set-array/issues"
+  },
+  "author": "ehmicky <ehmicky@gmail.com> (https://github.com/ehmicky)",
+  "directories": {
+    "lib": "src",
+    "test": "test"
+  },
+  "devDependencies": {
+    "@ehmicky/dev-tasks": "^1.0.70",
+    "test-each": "^4.0.0",
+    "tsd": "^0.20.0"
+  },
+  "engines": {
+    "node": ">=12.20.0"
+  },
+  "dependencies": {}
+}
