@@ -26,7 +26,9 @@ const validateUpdatesObj = function (updatesObj) {
 
 const validateUpdateKey = function (updateKey) {
   if (!UPDATE_KEY_REGEXP.test(updateKey)) {
-    throw new TypeError(`Second argument's keys must be numbers: ${updateKey}`)
+    throw new TypeError(
+      `Second argument's keys must be numbers: "${updateKey}"`,
+    )
   }
 }
 
@@ -38,6 +40,11 @@ const normalizeOptions = function (options = {}) {
   }
 
   const { merge = defaultMerge } = options
+
+  if (typeof merge !== 'function') {
+    throw new TypeError(`options.merge must be a function: ${merge}`)
+  }
+
   return { merge }
 }
 

@@ -6,15 +6,15 @@ import { normalizeInput } from './normalize.js'
 
 export default function setArray(array, updatesObj, options) {
   const { merge } = normalizeInput(array, updatesObj, options)
-  const updates = normalizeUpdatesObj(array, updatesObj)
+  const updates = normalizeUpdatesObj(updatesObj, array.length)
   const updatesA = concatUpdates(updates)
   const arrayA = applyUpdates(array, updatesA)
   return arrayA
 }
 
-const normalizeUpdatesObj = function (array, updatesObj) {
+const normalizeUpdatesObj = function (updatesObj, length) {
   return Object.entries(updatesObj).map(([updateKey, items]) =>
-    normalizeUpdate(updateKey, items, array.length),
+    normalizeUpdate(updateKey, items, length),
   )
 }
 
@@ -32,8 +32,8 @@ const resolveIndex = function (updateKey, length) {
 }
 
 const resolveNegation = function (fullIndex, length) {
-  return fullIndex >= 0 && !Object.is(fullIndex, -0)
-    ? Math.min(length + fullIndex, 0)
+  return fullIndex <= 0 && !Object.is(fullIndex, +0)
+    ? Math.max(length + fullIndex, +0)
     : fullIndex
 }
 
@@ -44,7 +44,7 @@ const resolveInsert = function (index) {
 
 const concatUpdates = function (updates) {
   if (updates.length === 1) {
-    return getSingleUpdate(updates)
+    return [getSingleUpdate(updates)]
   }
 
   const updatesA = Object.values(groupBy(updates, 'index')).map(concatGroup)
@@ -57,7 +57,6 @@ const concatGroup = function (updates) {
   }
 
   const [{ index }] = updates
-
   const updatesA = sortOn(updates, 'fullIndex')
   const items = updatesA.flatMap(getItems)
   return { index, items }
