@@ -1,5 +1,6 @@
 import sortOn from 'sort-on'
 
+import { applyUpdates } from './apply.js'
 import { groupBy } from './group.js'
 import { normalizeInput } from './normalize.js'
 
@@ -7,7 +8,8 @@ export default function setArray(array, updatesObj, options) {
   const { merge } = normalizeInput(array, updatesObj, options)
   const updates = normalizeUpdatesObj(array, updatesObj)
   const updatesA = concatUpdates(updates)
-  return array
+  const arrayA = applyUpdates(array, updatesA)
+  return arrayA
 }
 
 const normalizeUpdatesObj = function (array, updatesObj) {
