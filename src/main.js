@@ -1,6 +1,6 @@
 import { applyUpdates } from './apply.js'
 import { concatUpdates } from './concat.js'
-import { normalizeInput } from './normalize.js'
+import { normalizeInput } from './input.js'
 
 // Set/insert/append/omit multiple array items.
 // `updatesObj` is an object where each property is a single update with its:
