@@ -76,7 +76,7 @@ const resolveNegation = function (fullIndex, length) {
 // are sorted.
 const concatUpdates = function (updates) {
   if (updates.length === 1) {
-    return [getSingleUpdate(updates)]
+    return updates
   }
 
   const updatesA = Object.values(groupBy(updates, 'index')).map(concatGroup)
@@ -85,16 +85,12 @@ const concatUpdates = function (updates) {
 
 const concatGroup = function (updates) {
   if (updates.length === 1) {
-    return getSingleUpdate(updates)
+    return updates[0]
   }
 
   const [{ index }] = updates
   const updatesA = sortOn(updates, ['negation', 'fullIndex'])
   const items = updatesA.flatMap(getItems)
-  return { index, items }
-}
-
-const getSingleUpdate = function ([{ index, items }]) {
   return { index, items }
 }
 
