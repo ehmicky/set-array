@@ -9,14 +9,15 @@ import { normalizeInput } from './normalize.js'
 //  - Value:
 //     - Is the one used to set/insert/append/omit
 //     - Can be an array for multiple values
-//     - Can be an empty array to omit values
+//        - Can be an empty array to omit values
+//        - To set an array value, it must be wrapped in an additional array
 //  - Key:
 //     - Is the array index to use
-//     - Always refers to the index of the original array, regardless of new
-//       elements being inserted
-//     - If it ends with '+', the value is prepended instead of overridding
+//        - Always refers to the index of the original array, regardless of new
+//          elements being inserted
 //     - Negative indices are matched from the end
-//     - -0 can be used to append values
+//        - -0 can be used to append values
+//     - If it ends with '+', the value is prepended instead of overriding
 export default function setArray(array, updatesObj, options) {
   const { merge } = normalizeInput(array, updatesObj, options)
   const updates = normalizeUpdatesObj(updatesObj, array.length)
@@ -56,7 +57,8 @@ const resolvePrepend = function (updateKey) {
 
 const PREPEND_CHAR = '+'
 
-// Resolves negative indices
+// Resolves negative indices.
+// We use a `negation` property for the sorting logic later.
 const resolveNegation = function (fullIndex, length) {
   return fullIndex <= 0 && !Object.is(fullIndex, +0)
     ? { index: Math.max(length + fullIndex, +0), negation: 1 }
