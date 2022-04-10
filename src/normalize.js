@@ -1,10 +1,10 @@
 import isPlainObj from 'is-plain-obj'
 
-// Validate and normalize arguments
-export const normalizeInput = function (array, updatesObj, options) {
+// Validate arguments
+export const validateInput = function (array, updatesObj, options) {
   validateArray(array)
   validateUpdatesObj(updatesObj)
-  return normalizeOptions(options)
+  validateOptions(options)
 }
 
 const validateArray = function (array) {
@@ -35,20 +35,12 @@ const validateUpdateKey = function (updateKey) {
 // Matches -5, 5+ or -5+, for any integer
 const UPDATE_KEY_REGEXP = /^-?\d+\+?$/u
 
-const normalizeOptions = function (options = {}) {
+const validateOptions = function (options = {}) {
   if (!isPlainObj(options)) {
     throw new TypeError(`Last options argument must be an object: ${options}`)
   }
 
-  const { merge = defaultMerge } = options
-
-  if (typeof merge !== 'function') {
-    throw new TypeError(`options.merge must be a function: ${merge}`)
+  if (typeof options.merge !== 'function') {
+    throw new TypeError(`options.merge must be a function: ${options.merge}`)
   }
-
-  return { merge }
-}
-
-const defaultMerge = function (valueA, valueB) {
-  return valueB
 }
