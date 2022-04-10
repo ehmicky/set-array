@@ -12,7 +12,9 @@ const concatValue = function (valueA, valueB) {
 
 each(
   [
+    [['a', 'b', 'c'], { 0: 'A' }, { merge: setValue }, ['A', 'b', 'c']],
     [['a', 'b', 'c'], { 1: 'B' }, { merge: setValue }, ['a', 'B', 'c']],
+    [['a', 'b', 'c'], { '-1': 'C' }, { merge: setValue }, ['a', 'b', 'C']],
     [['a', 'b', 'c'], { 1: 'B' }, { merge: concatValue }, ['a', 'bB', 'c']],
     [
       ['a', undefined, 'c'],
