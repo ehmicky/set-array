@@ -1,3 +1,6 @@
+// Apply each update to the array.
+// The original array is not mutated.
+// This uses imperative logic for performance.
 export const applyUpdates = function (array, updates) {
   const newArray = []
   // eslint-disable-next-line fp/no-let

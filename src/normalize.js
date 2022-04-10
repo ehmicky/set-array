@@ -32,6 +32,7 @@ const validateUpdateKey = function (updateKey) {
   }
 }
 
+// Matches -5, 5+ or -5+, for any integer
 const UPDATE_KEY_REGEXP = /^-?\d+\+?$/u
 
 const normalizeOptions = function (options = {}) {
