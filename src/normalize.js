@@ -5,6 +5,7 @@ export const normalizeUpdatesObj = function (updatesObj, length) {
   )
 }
 
+// Multiple `items` can be updated|inserted by using an array
 const normalizeUpdate = function (updateKey, items, length) {
   const { index, fullIndex, negation } = resolveIndex(updateKey, length)
   const itemsA = Array.isArray(items) ? items : [items]
