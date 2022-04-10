@@ -41,9 +41,9 @@ const normalizeUpdate = function (updateKey, items, length) {
 const resolveIndex = function (updateKey, length) {
   const { updateKey: updateKeyA, prepend } = resolvePrepend(updateKey)
   const fullIndex = Number(updateKeyA)
-  const index = resolveNegation(fullIndex, length) - prepend
-  const negation = fullIndex <= 0 && !Object.is(fullIndex, +0) ? 1 : 0
-  return { index, fullIndex, negation }
+  const { index, negation } = resolveNegation(fullIndex, length)
+  const indexA = index - prepend
+  return { index: indexA, fullIndex, negation }
 }
 
 // Resolves using '+' to prepend values.
@@ -59,8 +59,8 @@ const PREPEND_CHAR = '+'
 // Resolves negative indices
 const resolveNegation = function (fullIndex, length) {
   return fullIndex <= 0 && !Object.is(fullIndex, +0)
-    ? Math.max(length + fullIndex, +0)
-    : fullIndex
+    ? { index: Math.max(length + fullIndex, +0), negation: 1 }
+    : { index: fullIndex, negation: 0 }
 }
 
 // Negative and positive indices might match the same index.
