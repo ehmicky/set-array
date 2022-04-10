@@ -2,7 +2,7 @@ import sortOn from 'sort-on'
 
 import { applyUpdates } from './apply.js'
 import { groupBy } from './group.js'
-import { validateInput } from './normalize.js'
+import { normalizeInput } from './normalize.js'
 
 // Set/insert/append/omit multiple array items.
 // `updatesObj` is an object where each property is a single update with its:
@@ -23,10 +23,10 @@ import { validateInput } from './normalize.js'
 //  - Allows all of: replacing, patching, appending, omitting
 //  - Is friendly to CLI flags
 export default function setArray(array, updatesObj, options) {
-  validateInput(array, updatesObj, options)
+  const optionsA = normalizeInput(array, updatesObj, options)
   const updates = normalizeUpdatesObj(updatesObj, array.length)
   const updatesA = concatUpdates(updates)
-  const arrayA = applyUpdates(array, updatesA)
+  const arrayA = applyUpdates(array, updatesA, optionsA)
   return arrayA
 }
 
