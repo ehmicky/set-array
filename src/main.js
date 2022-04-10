@@ -18,6 +18,10 @@ import { normalizeInput } from './normalize.js'
 //     - Negative indices are matched from the end
 //        - -0 can be used to append values
 //     - If it ends with '+', the value is prepended instead of overriding
+// This format:
+//  - Is declarative
+//  - Allows all of: replacing, patching, appending, omitting
+//  - Is friendly to CLI flags
 export default function setArray(array, updatesObj, options) {
   const { merge } = normalizeInput(array, updatesObj, options)
   const updates = normalizeUpdatesObj(updatesObj, array.length)
