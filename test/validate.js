@@ -2,6 +2,10 @@ import test from 'ava'
 import setArray from 'set-array'
 import { each } from 'test-each'
 
+const throwError = function () {
+  throw new Error('test')
+}
+
 each(
   [
     ...[true, {}].map((array) => [array, {}]),
@@ -13,6 +17,7 @@ each(
       (updateKey) => [[], { [updateKey]: 'A' }],
     ),
     ...[true, { merge: true }].map((options) => [[], {}, options]),
+    [['a'], { 0: 'A' }, { merge: throwError }],
   ],
   ({ title }, args) => {
     test(`setArray() validates input | ${title}`, (t) => {
