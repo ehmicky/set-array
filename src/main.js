@@ -23,7 +23,7 @@ import { normalizeInput } from './normalize.js'
 //  - Allows all of: replacing, patching, appending, omitting
 //  - Is friendly to CLI flags
 export default function setArray(array, updatesObj, options) {
-  const { merge } = normalizeInput(array, updatesObj, options)
+  normalizeInput(array, updatesObj, options)
   const updates = normalizeUpdatesObj(updatesObj, array.length)
   const updatesA = concatUpdates(updates)
   const arrayA = applyUpdates(array, updatesA)
