@@ -1,7 +1,5 @@
-import sortOn from 'sort-on'
-
 import { applyUpdates } from './apply.js'
-import { groupBy } from './group.js'
+import { concatUpdates } from './concat.js'
 import { normalizeInput } from './normalize.js'
 
 // Set/insert/append/omit multiple array items.
@@ -67,33 +65,4 @@ const resolveNegation = function (fullIndex, length) {
   return fullIndex <= 0 && !Object.is(fullIndex, +0)
     ? { index: Math.max(length + fullIndex, +0), negation: 1 }
     : { index: fullIndex, negation: 0 }
-}
-
-// Negative and positive indices might match the same index.
-// In that case, the negative indices are inserted last.
-//  - This ensures -1 is always last, which might be expected by some users
-// Also, if several different negative indices have been bounded to 0, they
-// are sorted.
-const concatUpdates = function (updates) {
-  if (updates.length === 1) {
-    return updates
-  }
-
-  const updatesA = Object.values(groupBy(updates, 'index')).map(concatGroup)
-  return sortOn(updatesA, 'index')
-}
-
-const concatGroup = function (updates) {
-  if (updates.length === 1) {
-    return updates[0]
-  }
-
-  const [{ index }] = updates
-  const updatesA = sortOn(updates, ['negation', 'fullIndex'])
-  const items = updatesA.flatMap(getItems)
-  return { index, items }
-}
-
-const getItems = function ({ items }) {
-  return items
 }
