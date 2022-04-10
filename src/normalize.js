@@ -32,7 +32,7 @@ const validateUpdateKey = function (updateKey) {
   }
 }
 
-const UPDATE_KEY_REGEXP = /^-?\d+(\.\d+)?$/u
+const UPDATE_KEY_REGEXP = /^-?\d+\+?$/u
 
 const normalizeOptions = function (options = {}) {
   if (!isPlainObj(options)) {

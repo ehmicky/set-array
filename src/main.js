@@ -25,21 +25,24 @@ const normalizeUpdate = function (updateKey, items, length) {
 }
 
 const resolveIndex = function (updateKey, length) {
-  const fullIndex = Number(updateKey)
-  const index = resolveNegation(fullIndex, length)
-  const indexA = resolveInsert(index)
-  return { index: indexA, fullIndex }
+  const { updateKey: updateKeyA, prepend } = resolvePrepend(updateKey)
+  const fullIndex = Number(updateKeyA)
+  const index = resolveNegation(fullIndex, length) - prepend
+  return { index, fullIndex }
 }
+
+const resolvePrepend = function (updateKey) {
+  return updateKey.endsWith(PREPEND_CHAR)
+    ? { updateKey: updateKey.slice(0, -1), prepend: 0.5 }
+    : { updateKey, prepend: 0 }
+}
+
+const PREPEND_CHAR = '+'
 
 const resolveNegation = function (fullIndex, length) {
   return fullIndex <= 0 && !Object.is(fullIndex, +0)
     ? Math.max(length + fullIndex, +0)
     : fullIndex
-}
-
-const resolveInsert = function (index) {
-  // eslint-disable-next-line no-magic-numbers
-  return Number.isInteger(index) ? index : Math.floor(index) + 0.5
 }
 
 const concatUpdates = function (updates) {
