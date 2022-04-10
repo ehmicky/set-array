@@ -33,16 +33,17 @@ const normalizeUpdatesObj = function (updatesObj, length) {
 }
 
 const normalizeUpdate = function (updateKey, items, length) {
-  const { index, fullIndex } = resolveIndex(updateKey, length)
+  const { index, fullIndex, negation } = resolveIndex(updateKey, length)
   const itemsA = Array.isArray(items) ? items : [items]
-  return { index, fullIndex, items: itemsA }
+  return { index, fullIndex, negation, items: itemsA }
 }
 
 const resolveIndex = function (updateKey, length) {
   const { updateKey: updateKeyA, prepend } = resolvePrepend(updateKey)
   const fullIndex = Number(updateKeyA)
   const index = resolveNegation(fullIndex, length) - prepend
-  return { index, fullIndex }
+  const negation = fullIndex <= 0 && !Object.is(fullIndex, +0) ? 1 : 0
+  return { index, fullIndex, negation }
 }
 
 // Resolves using '+' to prepend values.
@@ -63,7 +64,8 @@ const resolveNegation = function (fullIndex, length) {
 }
 
 // Negative and positive indices might match the same index.
-// In that case, the negative indices are inserted first.
+// In that case, the negative indices are inserted last.
+//  - This ensures -1 is always last, which might be expected by some users
 // Also, if several different negative indices have been bounded to 0, they
 // are sorted.
 const concatUpdates = function (updates) {
@@ -81,7 +83,7 @@ const concatGroup = function (updates) {
   }
 
   const [{ index }] = updates
-  const updatesA = sortOn(updates, 'fullIndex')
+  const updatesA = sortOn(updates, ['negation', 'fullIndex'])
   const items = updatesA.flatMap(getItems)
   return { index, items }
 }
