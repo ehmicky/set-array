@@ -64,12 +64,12 @@ Return a copy of `array` with each of the [`updates` applied](#updates).
 
 ### Updates
 
-The `updates` is an object where the values are the items to add.
+`updates` is an object where the values are the items to add.
 
 - Array of values add multiple items
 - Empty arrays remove items
 
-The keys are the array indices, before any updates.
+The keys are the `array` indices (before any updates).
 
 - Negative indices match from the end
 - `-0` appends items
@@ -88,7 +88,10 @@ _Return value_: `any`
 By default, the [`updates`](#updates) items override the original `array`'s
 items. The `merge` option can be used to merge those instead.
 
-If an array of items is used, `merge()` is called once per item.
+If an array of items is being added, `merge()` is called once per item.
+
+`merge()` is not called when the update's key ends with `+`, i.e. when items are
+being prepended.
 
 `merge()` is called even if the update's index is out-of-bound, with `oldValue`
 being `undefined`.
@@ -98,6 +101,7 @@ const merge = (oldValue, newValue) => [oldValue, newValue]
 
 setArray(['a', 'b', 'c'], { 1: 'X' }, { merge }) // ['a', ['b', 'X'], 'c']
 setArray(['a', 'b', 'c'], { 1: ['X', 'Y'] }, { merge }) // ['a', ['b', 'X'], ['b', 'Y'], 'c']
+setArray(['a', 'b', 'c'], { '1+': 'X' }, { merge }) // ['a', 'X', 'b', 'c']
 setArray(['a', 'b', 'c'], { 4: 'X' }, { merge }) // ['a', 'b', 'c', undefined, [undefined, 'X']]
 ```
 
