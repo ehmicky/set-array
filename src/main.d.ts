@@ -1,3 +1,13 @@
+type Index = `${number}${'+' | ''}` | number
+
+interface Updates<T> {
+  [index: Index]: T | T[]
+}
+
+interface Options<T> {
+  merge?(firstValue: T, secondValue: T): T
+}
+
 /**
  * Description
  *
@@ -5,4 +15,8 @@
  * ```js
  * ```
  */
-export default function setArray<T>(array: T[], newItems: object): T[]
+export default function setArray<T>(
+  array: T[],
+  updates: Updates<T>,
+  options?: Options<T>,
+): T[]
