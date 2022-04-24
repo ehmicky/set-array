@@ -64,12 +64,16 @@ Return a copy of `array` with each of the [`updates` applied](#updates).
 
 ### Updates
 
-`updates` is an object where the values are the items to add.
+#### Values
+
+`updates` values are the items to add.
 
 - Array of values add multiple items
 - Empty arrays remove items
 
-The keys are the `array` indices (before any updates).
+#### Keys
+
+`updates` keys are the `array` indices (before any updates).
 
 - Negative indices match from the end
 - `-0` appends items
