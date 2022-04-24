@@ -44,8 +44,8 @@ const applyMerge = function ({ items, array, index, merge }) {
     return items
   }
 
-  const value = array[index]
-  return items.map((item) => merge(value, item))
+  const oldValue = array[index]
+  return items.map((newValue) => merge(oldValue, newValue))
 }
 
 // eslint-disable-next-line max-params

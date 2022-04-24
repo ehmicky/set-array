@@ -10,7 +10,7 @@ Set/insert/append/omit multiple array items.
 
 ```js
 // Each element in the object argument updates array items.
-// The object keys refer to the array indices, before any updates.
+// The object keys are the array indices, before any updates.
 // The array is copied, not mutated.
 setArray(['a', 'b', 'c'], { 1: 'X' }) // ['a', 'X', 'c']
 setArray(['a', 'b', 'c'], { 1: 'X', 2: 'Y' }) // ['a', 'X', 'Y']
@@ -53,22 +53,53 @@ not `require()`.
 
 # API
 
-## setArray(array, newItems, options?)
+## setArray(array, updates, options?)
 
 `array` `any[]`\
-`newItems` `object`\
-`options` `object?`\
+[`updates` `object`](#updates)\
+[`options` `object?`](#options)\
 _Return value_: `any[]`
 
-```js
+Return a copy of `array` with each of the [`updates` applied](#updates).
 
-```
+### Updates
+
+The `updates` is an object where the values are the items to add.
+
+- Array of values add multiple items
+- Empty arrays remove items
+
+The keys are the array indices, before any updates.
+
+- Negative indices match from the end
+- `-0` appends items
+- If the key ends with `+`, items are prepended, not replaced
 
 ### Options
 
-Options are an optional plain object
+Options are an optional plain object.
 
-#### merge
+#### merge(oldValue, newValue)
+
+`oldValue` `any`\
+`newValue` `any`\
+_Return value_: `any`
+
+By default, the [`updates`](#updates) items override the original `array`'s
+items. The `merge` option can be used to merge those instead.
+
+If an array of items is used, `merge()` is called once per item.
+
+`merge()` is called even if the update's index is out-of-bound, with `oldValue`
+being `undefined`.
+
+```js
+const merge = (oldValue, newValue) => [oldValue, newValue]
+
+setArray(['a', 'b', 'c'], { 1: 'X' }, { merge }) // ['a', ['b', 'X'], 'c']
+setArray(['a', 'b', 'c'], { 1: ['X', 'Y'] }, { merge }) // ['a', ['b', 'X'], ['b', 'Y'], 'c']
+setArray(['a', 'b', 'c'], { 4: 'X' }, { merge }) // ['a', 'b', 'c', undefined, [undefined, 'X']]
+```
 
 # Support
 
