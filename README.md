@@ -9,20 +9,36 @@ Set/insert/append/omit multiple array items.
 # Examples
 
 ```js
-// Each element in the object argument updates array values.
+// Each element in the object argument updates array items.
+// The object keys refer to the array indices, before any updates.
 // The array is copied, not mutated.
-setArray(['a', 'b', 'c'], { 1: 'B' }) // ['a', 'B', 'c']
-setArray(['a', 'b', 'c'], { 1: 'B', 2: 'C' }) // ['a', 'B', 'C']
+setArray(['a', 'b', 'c'], { 1: 'X' }) // ['a', 'X', 'c']
+setArray(['a', 'b', 'c'], { 1: 'X', 2: 'Y' }) // ['a', 'X', 'Y']
 
-// Negative indices are matched from the end.
-// If too large, they stop at the first index.
-setArray(['a', 'b', 'c'], { '-2': 'B' }) // ['a', 'B', 'c']
-setArray(['a', 'b', 'c'], { '-10': 'A' }) // ['A', 'b', 'c']
+// Negative indices are matched from the end
+setArray(['a', 'b', 'c'], { '-1': 'X' }) // ['a', 'b', 'X']
 
-// Out-of-bound indices are allowed.
-// -0 can be used to append values.
-setArray(['a', 'b', 'c'], { 4: 'E' }) // ['a', 'b', 'c', undefined, 'E']
-setArray(['a', 'b', 'c'], { '-0': 'D' }) // ['a', 'b', 'c', 'D']
+// Large positive indices extend the array
+setArray(['a', 'b', 'c'], { 4: 'X' }) // ['a', 'b', 'c', undefined, 'X']
+
+// Large negative indices stop at the first item
+setArray(['a', 'b', 'c'], { '-10': 'X' }) // ['X', 'b', 'c']
+
+// -0 appends items
+setArray(['a', 'b', 'c'], { '-0': 'X' }) // ['a', 'b', 'c', 'X']
+
+// If the key ends with +, items are prepended, not replaced
+setArray(['a', 'b', 'c'], { '1+': 'X' }) // ['a', 'X', 'b', 'c']
+
+// Array of items can be used
+setArray(['a', 'b', 'c'], { 1: ['X', 'Y'] }) // ['a', 'X', 'Y', 'c']
+
+// Empty arrays remove items
+setArray(['a', 'b', 'c'], { 1: [] }) // ['a', 'c']
+
+// If the item is an array itself, it must be wrapped in another array
+setArray(['a', 'b', 'c'], { 1: ['X'] }) // ['a', 'X', 'c']
+setArray(['a', 'b', 'c'], { 1: [['X']] }) // ['a', ['X'], 'c']
 ```
 
 # Install
