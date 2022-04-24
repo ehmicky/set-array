@@ -6,7 +6,24 @@
 
 Set/insert/append/omit multiple array items.
 
-Work in progress!
+# Examples
+
+```js
+// Each element in the object argument updates array values.
+// The array is copied, not mutated.
+setArray(['a', 'b', 'c'], { 1: 'B' }) // ['a', 'B', 'c']
+setArray(['a', 'b', 'c'], { 1: 'B', 2: 'C' }) // ['a', 'B', 'C']
+
+// Negative indices are matched from the end.
+// If too large, they stop at the first index.
+setArray(['a', 'b', 'c'], { '-2': 'B' }) // ['a', 'B', 'c']
+setArray(['a', 'b', 'c'], { '-10': 'A' }) // ['A', 'b', 'c']
+
+// Out-of-bound indices are allowed.
+// -0 can be used to append values.
+setArray(['a', 'b', 'c'], { 4: 'E' }) // ['a', 'b', 'c', undefined, 'E']
+setArray(['a', 'b', 'c'], { '-0': 'D' }) // ['a', 'b', 'c', 'D']
+```
 
 # Install
 
