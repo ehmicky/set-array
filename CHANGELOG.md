@@ -1,3 +1,9 @@
+# 3.2.0
+
+## Types
+
+- Export more TypeScript types: `Index`, `Updates` and `Options`
+
 # 3.1.0
 
 ## Features
