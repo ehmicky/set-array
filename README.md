@@ -17,6 +17,9 @@ import { set } from 'set-array'
 set(['a', 'b', 'c'], { 1: 'X' }) // ['a', 'X', 'c']
 set(['a', 'b', 'c'], { 1: 'X', 2: 'Y' }) // ['a', 'X', 'Y']
 
+// '*' targets all items
+set(['a', 'b', 'c'], { '*': 'X' }) // ['X', 'X', 'X']
+
 // Negative indices are matched from the end
 set(['a', 'b', 'c'], { '-1': 'X' }) // ['a', 'b', 'X']
 
@@ -80,6 +83,7 @@ Return a copy of `array` with each of the [`updates` applied](#updates).
 - Negative indices match from the end
 - `-0` appends items
 - If the key ends with `+`, items are prepended, not replaced
+- `*` targets all items
 
 ### Options
 
@@ -106,6 +110,7 @@ being `undefined`.
 const merge = (oldValue, newValue) => [oldValue, newValue]
 
 set(['a', 'b', 'c'], { 1: 'X' }, { merge }) // ['a', ['b', 'X'], 'c']
+set(['a', 'b', 'c'], { '*': 'X' }, { merge }) // [['a', 'X'], ['b', 'X'], ['c', 'X']]
 set(['a', 'b', 'c'], { 1: ['X', 'Y'] }, { merge }) // ['a', ['b', 'X'], ['b', 'Y'], 'c']
 set(['a', 'b', 'c'], { '1+': 'X' }, { merge }) // ['a', 'X', 'b', 'c']
 set(['a', 'b', 'c'], { 4: 'X' }, { merge }) // ['a', 'b', 'c', undefined, [undefined, 'X']]
@@ -122,6 +127,8 @@ expected by [`set()`](#setarray-updates-options).
 ```js
 test({ 1: 'X' }) // true
 test({ '1+': 'X' }) // true
+test({ '-1': 'X' }) // true
+test({ '*': 'X' }) // true
 test({}) // true
 
 test({ notAnIndex: 'X' }) // false
