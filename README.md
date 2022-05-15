@@ -12,38 +12,54 @@ Set/insert/append/omit multiple array items.
 import { set } from 'set-array'
 
 // Each element in the object argument updates array items.
-// The object keys are the array indices, before any updates.
+// The object keys are the array indices (before any updates).
 // The array is copied, not mutated.
 set(['a', 'b', 'c'], { 1: 'X' }) // ['a', 'X', 'c']
 set(['a', 'b', 'c'], { 1: 'X', 2: 'Y' }) // ['a', 'X', 'Y']
+```
 
-// '*' targets all items
+### Indices
+
+```js
 set(['a', 'b', 'c'], { '*': 'X' }) // ['X', 'X', 'X']
-
-// Negative indices are matched from the end
 set(['a', 'b', 'c'], { '-1': 'X' }) // ['a', 'b', 'X']
-
-// Large positive indices extend the array
 set(['a', 'b', 'c'], { 4: 'X' }) // ['a', 'b', 'c', undefined, 'X']
-
-// Large negative indices stop at the first item
 set(['a', 'b', 'c'], { '-10': 'X' }) // ['X', 'b', 'c']
+```
 
-// -0 appends items
-set(['a', 'b', 'c'], { '-0': 'X' }) // ['a', 'b', 'c', 'X']
+### Add
 
-// If the key ends with +, items are prepended, not replaced
-set(['a', 'b', 'c'], { '1+': 'X' }) // ['a', 'X', 'b', 'c']
-
+```js
 // Array of items can be used
 set(['a', 'b', 'c'], { 1: ['X', 'Y'] }) // ['a', 'X', 'Y', 'c']
-
-// Empty arrays remove items
-set(['a', 'b', 'c'], { 1: [] }) // ['a', 'c']
-
-// If the item is an array itself, it must be wrapped in another array
 set(['a', 'b', 'c'], { 1: ['X'] }) // ['a', 'X', 'c']
 set(['a', 'b', 'c'], { 1: [['X']] }) // ['a', ['X'], 'c']
+```
+
+## Insert
+
+```js
+// If the key ends with +, items are prepended, not replaced
+set(['a', 'b', 'c'], { '1+': 'X' }) // ['a', 'X', 'b', 'c']
+```
+
+## Append
+
+```js
+set(['a', 'b', 'c'], { '-0': 'X' }) // ['a', 'b', 'c', 'X']
+set(['a', 'b', 'c'], { '-0': ['X', 'Y'] }) // ['a', 'b', 'c', 'X', 'Y']
+```
+
+## Prepend
+
+```js
+set(['a', 'b', 'c'], { '0+': ['X', 'Y'] }) // ['X', 'Y', 'a', 'b', 'c']
+```
+
+## Delete
+
+```js
+set(['a', 'b', 'c'], { 1: [] }) // ['a', 'c']
 ```
 
 # Install
