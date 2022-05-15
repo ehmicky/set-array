@@ -153,6 +153,11 @@ test({ notAnIndex: 'X' }) // false
 test('X') // false
 ```
 
+# Related projects
+
+- [`declarative-merge`](https://github.com/ehmicky/declarative-merge): merge
+  objects/arrays declaratively
+
 # Support
 
 For any question, _don't hesitate_ to [submit an issue on GitHub](../../issues).
