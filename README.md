@@ -8,6 +8,8 @@ Set/insert/append/omit multiple array items.
 
 # Examples
 
+## Update
+
 ```js
 import { set } from 'set-array'
 
@@ -18,7 +20,7 @@ set(['a', 'b', 'c'], { 1: 'X' }) // ['a', 'X', 'c']
 set(['a', 'b', 'c'], { 1: 'X', 2: 'Y' }) // ['a', 'X', 'Y']
 ```
 
-### Indices
+## Indices
 
 ```js
 set(['a', 'b', 'c'], { '*': 'X' }) // ['X', 'X', 'X']
@@ -27,7 +29,7 @@ set(['a', 'b', 'c'], { 4: 'X' }) // ['a', 'b', 'c', undefined, 'X']
 set(['a', 'b', 'c'], { '-10': 'X' }) // ['X', 'b', 'c']
 ```
 
-### Add
+## Add
 
 ```js
 // Array of items can be used
@@ -89,17 +91,18 @@ Return a copy of `array` with each of the [`updates` applied](#updates).
 
 `updates` values are the items to add.
 
-- Array of values add multiple items
-- Empty arrays remove items
+- Array of values [add multiple items](#add)
+- Empty arrays [remove items](#delete)
 
 #### Keys
 
-`updates` keys are the `array` indices (before any updates).
+`updates` keys are the `array` [indices](#indices) (before any updates).
 
 - Negative indices match from the end
-- `-0` appends items
-- If the key ends with `+`, items are prepended, not replaced
-- `*` targets all items
+- `-0` [appends](#append) items
+- If the key [ends with `+`](#insert), items are [prepended](#prepend), not
+  replaced
+- `*` [targets all items](#indices)
 
 ### Options
 
