@@ -111,6 +111,23 @@ set(['a', 'b', 'c'], { '1+': 'X' }, { merge }) // ['a', 'X', 'b', 'c']
 set(['a', 'b', 'c'], { 4: 'X' }, { merge }) // ['a', 'b', 'c', undefined, [undefined, 'X']]
 ```
 
+## test(updates)
+
+`updates` `any`\
+_Return value_: `boolean`
+
+Return whether the argument is an object that follows [the shape](#updates)
+expected by [`set()`](#setarray-updates-options).
+
+```js
+test({ 1: 'X' }) // true
+test({ '1+': 'X' }) // true
+test({}) // true
+
+test({ notAnIndex: 'X' }) // false
+test('X') // false
+```
+
 # Support
 
 For any question, _don't hesitate_ to [submit an issue on GitHub](../../issues).

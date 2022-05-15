@@ -62,3 +62,19 @@ export function set<T>(
   updates: Updates<T>,
   options?: Options<T>,
 ): T[]
+
+/**
+ * Return whether the argument is an object that follows the shape expected by
+ * `set()`.
+ *
+ * @example
+ * ```js
+ * test({ 1: 'X' }) // true
+ * test({ '1+': 'X' }) // true
+ * test({}) // true
+ *
+ * test({ notAnIndex: 'X' }) // false
+ * test('X') // false
+ * ```
+ */
+export function test(updates: any): boolean

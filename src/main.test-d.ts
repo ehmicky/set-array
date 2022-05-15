@@ -1,4 +1,4 @@
-import { set } from 'set-array'
+import { set, test } from 'set-array'
 import { expectType, expectError } from 'tsd'
 
 expectType<never[]>(set([], {}))
@@ -23,3 +23,8 @@ expectError(set(['a'], {}, { merge: (a: string, b: string) => true }))
 expectError(set([], { a: 'a' }))
 expectError(set([], { '--0': 'a' }))
 expectError(set([], { '0++': 'a' }))
+
+expectType<boolean>(test({}))
+expectType<boolean>(test({ 0: 'a' }))
+expectType<boolean>(test({ a: 'a' }))
+expectType<boolean>(test([]))

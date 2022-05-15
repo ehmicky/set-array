@@ -1,6 +1,6 @@
 import isPlainObj from 'is-plain-obj'
 
-// Returns whether the argument is an object that follows the shape expected
+// Return whether the argument is an object that follows the shape expected
 // by `set()`.
 export const test = function (updatesObj) {
   return testUpdatesObj(updatesObj) === undefined
