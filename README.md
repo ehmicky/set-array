@@ -18,10 +18,14 @@ available.
 For example, a library where shared configuration files can be extended.
 
 ```yml
+# The shared configuration exports a `rules` array of objects
 extend: my-shared-config
+
 rules:
+  # Update a rule
   1:
     level: silent
+  # Append a rule
   '-0':
     name: appendedRule
 ```
