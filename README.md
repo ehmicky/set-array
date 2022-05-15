@@ -6,6 +6,36 @@
 
 Set array items declaratively.
 
+Array items can be [updated](#update), [merged](#mergeoldvalue-newvalue),
+[added](#add), [inserted](#insert), [appended](#append), [prepended](#prepend)
+or [deleted](#delete).
+
+# Use cases
+
+This is intended for cases where arrays manipulation in JavaScript is not
+available.
+
+For example, a library where shared configuration files can be extended.
+
+```yml
+extend: my-shared-config
+rules:
+  1:
+    level: silent
+  '-0':
+    name: appendedRule
+```
+
+Or a server receiving network patch requests.
+
+```http
+PATCH /pets/0
+
+{
+  "toys": { "1": "updateSecondToy", "-0": "appendNewToy" }
+}
+```
+
 # Examples
 
 ## Update
