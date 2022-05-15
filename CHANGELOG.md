@@ -1,3 +1,9 @@
+# 3.1.0
+
+## Features
+
+- Allow update keys to be `*` to target all array items
+
 # 3.0.0
 
 ## Breaking changes
