@@ -1,3 +1,10 @@
+# 3.0.0
+
+## Breaking changes
+
+- The default export is now a named export
+  [`set()`](README.md#setarray-updates-options)
+
 # 2.0.0
 
 ## Breaking changes
