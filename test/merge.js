@@ -46,6 +46,13 @@ each(
       { merge: concatValue },
       ['a', 'AB', 'b', 'c'],
     ],
+    [['a', 'b', 'c'], { '*': 'B' }, { merge: concatValue }, ['aB', 'bB', 'cB']],
+    [
+      ['a', 'b', 'c'],
+      { '*': ['B', 'C'] },
+      { merge: concatValue },
+      ['aB', 'aC', 'bB', 'bC', 'cB', 'cC'],
+    ],
   ],
   ({ title }, [inputArray, items, options, outputArray]) => {
     test(`"merge" option | ${title}`, (t) => {

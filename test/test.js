@@ -2,14 +2,10 @@ import test from 'ava'
 import { test as testArg } from 'set-array'
 import { each } from 'test-each'
 
+import { INVALID_KEYS } from './helpers/invalid.js'
+
 each(
-  [
-    [],
-    true,
-    ...['1.0', '1e1', '+1', '1-', '--1', '1++', '', ' ', '1 ', ' 1', 'a'].map(
-      (updateKey) => ({ [updateKey]: 'A' }),
-    ),
-  ],
+  [[], true, ...INVALID_KEYS.map((updateKey) => ({ [updateKey]: 'A' }))],
   ({ title }, updatesObj) => {
     test(`test() invalid inputs | ${title}`, (t) => {
       t.false(testArg(updatesObj))
@@ -18,7 +14,10 @@ each(
 )
 
 each(
-  [{}, ...['1', '1+', '-1', '-1+'].map((updateKey) => ({ [updateKey]: 'A' }))],
+  [
+    {},
+    ...['1', '1+', '-1', '-1+', '*'].map((updateKey) => ({ [updateKey]: 'A' })),
+  ],
   ({ title }, updatesObj) => {
     test(`test() valid inputs | ${title}`, (t) => {
       t.true(testArg(updatesObj))

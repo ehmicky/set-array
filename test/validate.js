@@ -2,6 +2,8 @@ import test from 'ava'
 import { set } from 'set-array'
 import { each } from 'test-each'
 
+import { INVALID_KEYS } from './helpers/invalid.js'
+
 const throwError = function () {
   throw new Error('test')
 }
@@ -13,9 +15,7 @@ each(
       [],
       updatesObj,
     ]),
-    ...['1.0', '1e1', '+1', '1-', '--1', '1++', '', ' ', '1 ', ' 1', 'a'].map(
-      (updateKey) => [[], { [updateKey]: 'A' }],
-    ),
+    ...INVALID_KEYS.map((updateKey) => [[], { [updateKey]: 'A' }]),
     ...[true, { merge: true }].map((options) => [[], {}, options]),
     [['a'], { 0: 'A' }, { merge: throwError }],
   ],
