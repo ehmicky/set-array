@@ -1,5 +1,10 @@
-import { set, test } from 'set-array'
-import { expectType, expectError } from 'tsd'
+import { set, test, Index, Updates, Options } from 'set-array'
+import {
+  expectType,
+  expectAssignable,
+  expectNotAssignable,
+  expectError,
+} from 'tsd'
 
 expectType<never[]>(set([], {}))
 expectType<string[]>(set(['a'], {}))
@@ -29,3 +34,18 @@ expectType<boolean>(test({}))
 expectType<boolean>(test({ 0: 'a' }))
 expectType<boolean>(test({ a: 'a' }))
 expectType<boolean>(test([]))
+
+expectAssignable<Index>('-12+')
+expectAssignable<Index>('*')
+expectNotAssignable<Index>('a')
+
+expectAssignable<Updates<string>>({ '-12+': 'a' })
+expectAssignable<Updates<string>>({ '*': 'a' })
+expectAssignable<Updates<string>>({ '*': ['a'] })
+expectAssignable<Updates<string>>({})
+expectNotAssignable<Updates<string>>({ a: 'a' })
+expectNotAssignable<Updates<string>>({ '*': true })
+
+expectAssignable<Options<string>>({})
+expectAssignable<Options<string>>({ merge: (a: string, b: string) => b })
+expectNotAssignable<Options<string>>({ unknownOption: true })

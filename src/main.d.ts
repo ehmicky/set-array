@@ -1,10 +1,10 @@
-type Index = `${number}${'+' | ''}` | number | '*'
+export type Index = `${number}${'+' | ''}` | number | '*'
 
-type Updates<T> = {
+export type Updates<T> = {
   [U in Index]?: T | T[]
 }
 
-interface Options<T> {
+export interface Options<T> {
   /**
    * By default, the `updates` items override the original `array`'s items.
    * The `merge` option can be used to merge those instead.
