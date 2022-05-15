@@ -21,7 +21,7 @@ import { normalizeUpdatesObj } from './normalize.js'
 //  - Is declarative
 //  - Allows all of: replacing, patching, appending, omitting
 //  - Is friendly to CLI flags
-export default function setArray(array, updatesObj, options) {
+export const set = function (array, updatesObj, options) {
   const optionsA = normalizeInput(array, updatesObj, options)
   const updates = normalizeUpdatesObj(updatesObj, array.length)
   const updatesA = concatUpdates(updates)

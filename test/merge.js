@@ -1,5 +1,5 @@
 import test from 'ava'
-import setArray from 'set-array'
+import { set } from 'set-array'
 import { each } from 'test-each'
 
 const setValue = function (valueA, valueB) {
@@ -49,7 +49,7 @@ each(
   ],
   ({ title }, [inputArray, items, options, outputArray]) => {
     test(`"merge" option | ${title}`, (t) => {
-      t.deepEqual(setArray(inputArray, items, options), outputArray)
+      t.deepEqual(set(inputArray, items, options), outputArray)
     })
   },
 )

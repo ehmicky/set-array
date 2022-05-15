@@ -21,10 +21,10 @@ interface Options<T> {
    * ```js
    * const merge = (oldValue, newValue) => [oldValue, newValue]
    *
-   * setArray(['a', 'b', 'c'], { 1: 'X' }, { merge }) // ['a', ['b', 'X'], 'c']
-   * setArray(['a', 'b', 'c'], { 1: ['X', 'Y'] }, { merge }) // ['a', ['b', 'X'], ['b', 'Y'], 'c']
-   * setArray(['a', 'b', 'c'], { '1+': 'X' }, { merge }) // ['a', 'X', 'b', 'c']
-   * setArray(['a', 'b', 'c'], { 4: 'X' }, { merge }) // ['a', 'b', 'c', undefined, [undefined, 'X']]
+   * set(['a', 'b', 'c'], { 1: 'X' }, { merge }) // ['a', ['b', 'X'], 'c']
+   * set(['a', 'b', 'c'], { 1: ['X', 'Y'] }, { merge }) // ['a', ['b', 'X'], ['b', 'Y'], 'c']
+   * set(['a', 'b', 'c'], { '1+': 'X' }, { merge }) // ['a', 'X', 'b', 'c']
+   * set(['a', 'b', 'c'], { 4: 'X' }, { merge }) // ['a', 'b', 'c', undefined, [undefined, 'X']]
    * ```
    */
   merge?(oldValue: T, newValue: T): T
@@ -44,20 +44,20 @@ interface Options<T> {
  *
  * @example
  * ```js
- * setArray(['a', 'b', 'c'], { 1: 'X' }) // ['a', 'X', 'c']
- * setArray(['a', 'b', 'c'], { 1: 'X', 2: 'Y' }) // ['a', 'X', 'Y']
- * setArray(['a', 'b', 'c'], { '-1': 'X' }) // ['a', 'b', 'X']
- * setArray(['a', 'b', 'c'], { 4: 'X' }) // ['a', 'b', 'c', undefined, 'X']
- * setArray(['a', 'b', 'c'], { '-10': 'X' }) // ['X', 'b', 'c']
- * setArray(['a', 'b', 'c'], { '-0': 'X' }) // ['a', 'b', 'c', 'X']
- * setArray(['a', 'b', 'c'], { '1+': 'X' }) // ['a', 'X', 'b', 'c']
- * setArray(['a', 'b', 'c'], { 1: ['X', 'Y'] }) // ['a', 'X', 'Y', 'c']
- * setArray(['a', 'b', 'c'], { 1: [] }) // ['a', 'c']
- * setArray(['a', 'b', 'c'], { 1: ['X'] }) // ['a', 'X', 'c']
- * setArray(['a', 'b', 'c'], { 1: [['X']] }) // ['a', ['X'], 'c']
+ * set(['a', 'b', 'c'], { 1: 'X' }) // ['a', 'X', 'c']
+ * set(['a', 'b', 'c'], { 1: 'X', 2: 'Y' }) // ['a', 'X', 'Y']
+ * set(['a', 'b', 'c'], { '-1': 'X' }) // ['a', 'b', 'X']
+ * set(['a', 'b', 'c'], { 4: 'X' }) // ['a', 'b', 'c', undefined, 'X']
+ * set(['a', 'b', 'c'], { '-10': 'X' }) // ['X', 'b', 'c']
+ * set(['a', 'b', 'c'], { '-0': 'X' }) // ['a', 'b', 'c', 'X']
+ * set(['a', 'b', 'c'], { '1+': 'X' }) // ['a', 'X', 'b', 'c']
+ * set(['a', 'b', 'c'], { 1: ['X', 'Y'] }) // ['a', 'X', 'Y', 'c']
+ * set(['a', 'b', 'c'], { 1: [] }) // ['a', 'c']
+ * set(['a', 'b', 'c'], { 1: ['X'] }) // ['a', 'X', 'c']
+ * set(['a', 'b', 'c'], { 1: [['X']] }) // ['a', ['X'], 'c']
  * ```
  */
-export default function setArray<T>(
+export function set<T>(
   array: T[],
   updates: Updates<T>,
   options?: Options<T>,

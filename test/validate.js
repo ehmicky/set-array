@@ -1,5 +1,5 @@
 import test from 'ava'
-import setArray from 'set-array'
+import { set } from 'set-array'
 import { each } from 'test-each'
 
 const throwError = function () {
@@ -20,8 +20,8 @@ each(
     [['a'], { 0: 'A' }, { merge: throwError }],
   ],
   ({ title }, args) => {
-    test(`setArray() validates input | ${title}`, (t) => {
-      t.throws(setArray.bind(undefined, ...args))
+    test(`set() validates input | ${title}`, (t) => {
+      t.throws(set.bind(undefined, ...args))
     })
   },
 )

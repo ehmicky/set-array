@@ -9,36 +9,38 @@ Set/insert/append/omit multiple array items.
 # Examples
 
 ```js
+import { set } from 'set-array'
+
 // Each element in the object argument updates array items.
 // The object keys are the array indices, before any updates.
 // The array is copied, not mutated.
-setArray(['a', 'b', 'c'], { 1: 'X' }) // ['a', 'X', 'c']
-setArray(['a', 'b', 'c'], { 1: 'X', 2: 'Y' }) // ['a', 'X', 'Y']
+set(['a', 'b', 'c'], { 1: 'X' }) // ['a', 'X', 'c']
+set(['a', 'b', 'c'], { 1: 'X', 2: 'Y' }) // ['a', 'X', 'Y']
 
 // Negative indices are matched from the end
-setArray(['a', 'b', 'c'], { '-1': 'X' }) // ['a', 'b', 'X']
+set(['a', 'b', 'c'], { '-1': 'X' }) // ['a', 'b', 'X']
 
 // Large positive indices extend the array
-setArray(['a', 'b', 'c'], { 4: 'X' }) // ['a', 'b', 'c', undefined, 'X']
+set(['a', 'b', 'c'], { 4: 'X' }) // ['a', 'b', 'c', undefined, 'X']
 
 // Large negative indices stop at the first item
-setArray(['a', 'b', 'c'], { '-10': 'X' }) // ['X', 'b', 'c']
+set(['a', 'b', 'c'], { '-10': 'X' }) // ['X', 'b', 'c']
 
 // -0 appends items
-setArray(['a', 'b', 'c'], { '-0': 'X' }) // ['a', 'b', 'c', 'X']
+set(['a', 'b', 'c'], { '-0': 'X' }) // ['a', 'b', 'c', 'X']
 
 // If the key ends with +, items are prepended, not replaced
-setArray(['a', 'b', 'c'], { '1+': 'X' }) // ['a', 'X', 'b', 'c']
+set(['a', 'b', 'c'], { '1+': 'X' }) // ['a', 'X', 'b', 'c']
 
 // Array of items can be used
-setArray(['a', 'b', 'c'], { 1: ['X', 'Y'] }) // ['a', 'X', 'Y', 'c']
+set(['a', 'b', 'c'], { 1: ['X', 'Y'] }) // ['a', 'X', 'Y', 'c']
 
 // Empty arrays remove items
-setArray(['a', 'b', 'c'], { 1: [] }) // ['a', 'c']
+set(['a', 'b', 'c'], { 1: [] }) // ['a', 'c']
 
 // If the item is an array itself, it must be wrapped in another array
-setArray(['a', 'b', 'c'], { 1: ['X'] }) // ['a', 'X', 'c']
-setArray(['a', 'b', 'c'], { 1: [['X']] }) // ['a', ['X'], 'c']
+set(['a', 'b', 'c'], { 1: ['X'] }) // ['a', 'X', 'c']
+set(['a', 'b', 'c'], { 1: [['X']] }) // ['a', ['X'], 'c']
 ```
 
 # Install
@@ -53,7 +55,7 @@ not `require()`.
 
 # API
 
-## setArray(array, updates, options?)
+## set(array, updates, options?)
 
 `array` `any[]`\
 [`updates` `object`](#updates)\
@@ -103,10 +105,10 @@ being `undefined`.
 ```js
 const merge = (oldValue, newValue) => [oldValue, newValue]
 
-setArray(['a', 'b', 'c'], { 1: 'X' }, { merge }) // ['a', ['b', 'X'], 'c']
-setArray(['a', 'b', 'c'], { 1: ['X', 'Y'] }, { merge }) // ['a', ['b', 'X'], ['b', 'Y'], 'c']
-setArray(['a', 'b', 'c'], { '1+': 'X' }, { merge }) // ['a', 'X', 'b', 'c']
-setArray(['a', 'b', 'c'], { 4: 'X' }, { merge }) // ['a', 'b', 'c', undefined, [undefined, 'X']]
+set(['a', 'b', 'c'], { 1: 'X' }, { merge }) // ['a', ['b', 'X'], 'c']
+set(['a', 'b', 'c'], { 1: ['X', 'Y'] }, { merge }) // ['a', ['b', 'X'], ['b', 'Y'], 'c']
+set(['a', 'b', 'c'], { '1+': 'X' }, { merge }) // ['a', 'X', 'b', 'c']
+set(['a', 'b', 'c'], { 4: 'X' }, { merge }) // ['a', 'b', 'c', undefined, [undefined, 'X']]
 ```
 
 # Support
