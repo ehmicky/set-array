@@ -1,5 +1,7 @@
 import isPlainObj from 'is-plain-obj'
 
+import { testUpdatesObj } from './test.js'
+
 // Validate and normalize arguments
 export const normalizeInput = function (array, updatesObj, options) {
   validateArray(array)
@@ -14,26 +16,23 @@ const validateArray = function (array) {
 }
 
 const validateUpdatesObj = function (updatesObj) {
-  if (!isPlainObj(updatesObj)) {
-    throw new TypeError(`Second argument must be an object: ${updatesObj}`)
-  }
+  const errorObj = testUpdatesObj(updatesObj)
 
-  // eslint-disable-next-line fp/no-loops, guard-for-in
-  for (const updateKey in updatesObj) {
-    validateUpdateKey(updateKey)
-  }
-}
-
-const validateUpdateKey = function (updateKey) {
-  if (!UPDATE_KEY_REGEXP.test(updateKey)) {
+  if (errorObj !== undefined) {
     throw new TypeError(
-      `Second argument's keys must be numbers: "${updateKey}"`,
+      UPDATES_OBJ_ERRORS[errorObj.error]({ updatesObj, key: errorObj.key }),
     )
   }
 }
 
-// Matches -5, 5+ or -5+, for any integer
-const UPDATE_KEY_REGEXP = /^-?\d+\+?$/u
+const UPDATES_OBJ_ERRORS = {
+  plainObj({ updatesObj }) {
+    return `Second argument must be an object: ${updatesObj}`
+  },
+  key({ key }) {
+    return `Second argument's keys must be numbers: "${key}"`
+  },
+}
 
 const normalizeOptions = function (options = {}) {
   if (!isPlainObj(options)) {
