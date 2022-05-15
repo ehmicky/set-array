@@ -2,24 +2,39 @@
 // The original array is not mutated.
 // This uses imperative logic for performance.
 export const applyUpdates = function (array, updates, { merge }) {
+  const { array: arrayA, updates: updatesA } = applyAny(array, updates, merge)
+
   const newArray = []
   // eslint-disable-next-line fp/no-let
   let previousIndex = -1
 
   // eslint-disable-next-line fp/no-loops
-  for (const update of updates) {
+  for (const update of updatesA) {
     // eslint-disable-next-line fp/no-mutation
     previousIndex = applyUpdate({
       update,
-      array,
+      array: arrayA,
       newArray,
       previousIndex,
       merge,
     })
   }
 
-  pushValues(array, newArray, previousIndex + 1, array.length)
+  pushValues(arrayA, newArray, previousIndex + 1, arrayA.length)
   return newArray
+}
+
+// When a '*' update is present, it modifies all value of the array
+const applyAny = function (array, updates, merge) {
+  if (updates.length === 0 || !updates[0].any) {
+    return { array, updates }
+  }
+
+  const [{ items }, ...updatesA] = updates
+  const arrayA = array.flatMap((_, index) =>
+    applyMerge({ items, array, index, merge }),
+  )
+  return { array: arrayA, updates: updatesA }
 }
 
 const applyUpdate = function ({

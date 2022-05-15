@@ -14,11 +14,19 @@ export const testUpdatesObj = function (updatesObj) {
   // eslint-disable-next-line fp/no-loops
   for (const key in updatesObj) {
     // eslint-disable-next-line max-depth
-    if (!UPDATE_KEY_REGEXP.test(key)) {
+    if (!isValidKey(key)) {
       return { error: 'key', key }
     }
   }
 }
 
+const isValidKey = function (key) {
+  return key === ANY_KEY || UPDATE_KEY_REGEXP.test(key)
+}
+
+// Special key targeting all array elements
+export const ANY_KEY = '*'
+// Meant the value should be prepended
+export const PREPEND_CHAR = '+'
 // Matches -5, 5+ or -5+, for any integer
 const UPDATE_KEY_REGEXP = /^-?\d+\+?$/u

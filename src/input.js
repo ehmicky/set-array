@@ -30,7 +30,7 @@ const UPDATES_OBJ_ERRORS = {
     return `Second argument must be an object: ${updatesObj}`
   },
   key({ key }) {
-    return `Second argument's keys must be numbers: "${key}"`
+    return `Second argument's keys must be numbers or "*": "${key}"`
   },
 }
 

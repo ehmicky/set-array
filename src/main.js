@@ -19,6 +19,7 @@ export { test } from './test.js'
 //     - Negative indices are matched from the end
 //        - -0 can be used to append values
 //     - If it ends with '+', the value is prepended instead of overriding
+//     - Can be '*' to target all elements
 // This format:
 //  - Is declarative
 //  - Allows all of: replacing, patching, appending, omitting
