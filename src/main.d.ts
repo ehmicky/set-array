@@ -1,7 +1,7 @@
-type Index = `${number}${'+' | ''}` | number
+type Index = `${number}${'+' | ''}` | number | '*'
 
-interface Updates<T> {
-  [index: Index]: T | T[]
+type Updates<T> = {
+  [U in Index]?: T | T[]
 }
 
 interface Options<T> {

@@ -12,6 +12,7 @@ set(['a'], {}, { merge: (a: string, b: string) => b })
 set([], { '-0': 'a' })
 set([], { '0+': 'a' })
 set([], { '-12+': 'a' })
+set([], { '*': 'a' })
 
 expectError(set(true, {}))
 expectError(set([], true))
