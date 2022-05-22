@@ -1,3 +1,9 @@
+# 3.2.1
+
+## Bug fixes
+
+- Do not allow keys to be symbols in the second argument
+
 # 3.2.0
 
 ## Types
