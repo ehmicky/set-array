@@ -20,7 +20,7 @@ const validateUpdatesObj = function (updatesObj) {
 
   if (errorObj !== undefined) {
     throw new TypeError(
-      UPDATES_OBJ_ERRORS[errorObj.error]({ updatesObj, key: errorObj.key }),
+      UPDATES_OBJ_ERRORS[errorObj.error]({ updatesObj, ...errorObj }),
     )
   }
 }
@@ -31,6 +31,9 @@ const UPDATES_OBJ_ERRORS = {
   },
   key({ key }) {
     return `Second argument's keys must be numbers or "*": "${key}"`
+  },
+  symbol({ symbol }) {
+    return `Second argument's keys must not be symbols: ${String(symbol)}`
   },
 }
 

@@ -16,4 +16,5 @@ export const INVALID_KEYS = [
   '**',
   '*1',
   '1*',
+  Symbol('key'),
 ]

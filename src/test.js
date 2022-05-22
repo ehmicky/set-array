@@ -18,6 +18,16 @@ export const testUpdatesObj = function (updatesObj) {
       return { error: 'key', key }
     }
   }
+
+  return testSymbols(updatesObj)
+}
+
+const testSymbols = function (updatesObj) {
+  const [symbol] = Object.getOwnPropertySymbols(updatesObj)
+
+  if (symbol !== undefined) {
+    return { error: 'symbol', symbol }
+  }
 }
 
 const isValidKey = function (key) {
