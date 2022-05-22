@@ -7,8 +7,8 @@
 Set array items declaratively.
 
 Array items can be [updated](#update), [merged](#mergeoldvalue-newvalue),
-[added](#add), [inserted](#insert), [appended](#append), [prepended](#prepend)
-or [deleted](#delete).
+[added](#add), [inserted](#insert), [appended](#append), [prepended](#prepend),
+[deleted](#delete) or [set](#set).
 
 # Use cases
 
@@ -95,6 +95,12 @@ set(['a', 'b', 'c'], { '0+': ['X', 'Y'] }) // ['X', 'Y', 'a', 'b', 'c']
 
 ```js
 set(['a', 'b', 'c'], { 1: [] }) // ['a', 'c']
+```
+
+## Set
+
+```js
+set([], { 0: 'X', 2: 'Z' }) // ['X', undefined, 'Z']
 ```
 
 # Install

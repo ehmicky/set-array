@@ -58,6 +58,7 @@ export interface Options<T> {
  * set(['a', 'b', 'c'], { 1: [] }) // ['a', 'c']
  * set(['a', 'b', 'c'], { 1: ['X'] }) // ['a', 'X', 'c']
  * set(['a', 'b', 'c'], { 1: [['X']] }) // ['a', ['X'], 'c']
+ * set([], { 0: 'X', 2: 'Z' }) // ['X', undefined, 'Z']
  * ```
  */
 export function set<T>(
