@@ -191,6 +191,9 @@ test('X') // false
 
 - [`declarative-merge`](https://github.com/ehmicky/declarative-merge): merge
   objects/arrays declaratively
+- [`wild-wild-utils`](https://github.com/ehmicky/wild-wild-utils): apply
+  `set-array` on multiple properties at once using this module's
+  [`merge()` method](https://github.com/ehmicky/wild-wild-utils#mergetarget-query-value-options)
 
 # Support
 
