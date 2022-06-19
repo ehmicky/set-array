@@ -16,6 +16,7 @@
     "nodejs",
     "node",
     "javascript",
+    "typescript",
     "set",
     "library",
     "algorithm",
@@ -31,8 +32,7 @@
     "insert",
     "array-methods",
     "array-manipulations",
-    "omit",
-    "array-helper"
+    "omit"
   ],
   "license": "Apache-2.0",
   "homepage": "https://bit.ly/3KtfPKu",
