@@ -1,10 +1,11 @@
-import { set, test, Index, Updates, Options } from 'set-array'
 import {
   expectType,
   expectAssignable,
   expectNotAssignable,
   expectError,
 } from 'tsd'
+
+import { set, test, Index, Updates, Options } from './main.js'
 
 expectType<never[]>(set([], {}))
 expectType<string[]>(set(['a'], {}))
