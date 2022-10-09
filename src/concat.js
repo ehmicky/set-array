@@ -1,5 +1,3 @@
-import sortOn from 'sort-on'
-
 import { groupBy } from './group.js'
 
 // Negative and positive indices might match the same index.
@@ -14,7 +12,8 @@ export const concatUpdates = function (updates) {
   }
 
   const updatesA = Object.values(groupBy(updates, 'index')).map(concatGroup)
-  return sortOn(updatesA, ['any', 'index'])
+  // eslint-disable-next-line fp/no-mutating-methods
+  return [...updatesA].sort(secondSortFunc)
 }
 
 const concatGroup = function (updates) {
@@ -48,6 +47,27 @@ const firstSortFunc = function (updateA, updateB) {
   }
 
   if (updateA.fullIndex > updateB.fullIndex) {
+    return 1
+  }
+
+  return 0
+}
+
+// eslint-disable-next-line complexity
+const secondSortFunc = function (updateA, updateB) {
+  if (updateA.any < updateB.any) {
+    return 1
+  }
+
+  if (updateA.any > updateB.any) {
+    return -1
+  }
+
+  if (updateA.index < updateB.index) {
+    return -1
+  }
+
+  if (updateA.index > updateB.index) {
     return 1
   }
 

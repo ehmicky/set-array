@@ -53,7 +53,6 @@
     "node": ">=14.18.0"
   },
   "dependencies": {
-    "is-plain-obj": "^4.1.0",
-    "sort-on": "^5.0.0"
+    "is-plain-obj": "^4.1.0"
   }
 }
