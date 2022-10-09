@@ -1,3 +1,9 @@
+# 3.5.0
+
+## Features
+
+- Reduce npm package size
+
 # 3.4.1
 
 ## Bug fixes
