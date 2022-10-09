@@ -23,7 +23,7 @@ const resolveIndex = function (updateKey, length) {
   const any = updateKey === ANY_KEY
 
   if (any) {
-    return { negation: false, any }
+    return { negation: 2, any }
   }
 
   const { updateKey: updateKeyA, prepend } = resolvePrepend(updateKey)

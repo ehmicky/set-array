@@ -36,7 +36,7 @@ const isValidKey = function (key) {
 
 // Special key targeting all array elements
 export const ANY_KEY = '*'
-// Meant the value should be prepended
+// Means the value should be prepended
 export const PREPEND_CHAR = '+'
 // Matches -5, 5+ or -5+, for any integer
 const UPDATE_KEY_REGEXP = /^-?\d+\+?$/u

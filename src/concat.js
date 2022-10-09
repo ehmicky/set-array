@@ -23,11 +23,33 @@ const concatGroup = function (updates) {
   }
 
   const [{ index, any }] = updates
-  const updatesA = sortOn(updates, ['negation', 'fullIndex'])
+  // eslint-disable-next-line fp/no-mutating-methods
+  const updatesA = [...updates].sort(firstSortFunc)
   const items = updatesA.flatMap(getItems)
   return { index, any, items }
 }
 
 const getItems = function ({ items }) {
   return items
+}
+
+// eslint-disable-next-line complexity
+const firstSortFunc = function (updateA, updateB) {
+  if (updateA.negation < updateB.negation) {
+    return -1
+  }
+
+  if (updateA.negation > updateB.negation) {
+    return 1
+  }
+
+  if (updateA.fullIndex < updateB.fullIndex) {
+    return -1
+  }
+
+  if (updateA.fullIndex > updateB.fullIndex) {
+    return 1
+  }
+
+  return 0
 }
