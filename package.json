@@ -34,7 +34,7 @@
     "array-manipulations",
     "omit"
   ],
-  "license": "Apache-2.0",
+  "license": "MIT",
   "homepage": "https://www.github.com/ehmicky/set-array",
   "repository": "ehmicky/set-array",
   "bugs": {
