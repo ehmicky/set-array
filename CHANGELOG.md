@@ -1,3 +1,7 @@
+# 3.4.0
+
+- Switch to MIT license
+
 # 3.3.0
 
 ## Features
