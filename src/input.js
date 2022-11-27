@@ -1,6 +1,6 @@
 import isPlainObj from 'is-plain-obj'
 
-import { testUpdatesObj } from './test.js'
+import { testUpdatesObj } from './check.js'
 
 // Validate and normalize arguments
 export const normalizeInput = function (array, updatesObj, options) {

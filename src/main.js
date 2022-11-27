@@ -3,7 +3,7 @@ import { concatUpdates } from './concat.js'
 import { normalizeInput } from './input.js'
 import { normalizeUpdatesObj } from './normalize.js'
 
-export { test } from './test.js'
+export { test } from './check.js'
 
 // Set/insert/append/omit multiple array items.
 // `updatesObj` is an object where each property is a single update with its:

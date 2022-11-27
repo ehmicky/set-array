@@ -1,4 +1,4 @@
-import { ANY_KEY, PREPEND_CHAR } from './test.js'
+import { ANY_KEY, PREPEND_CHAR } from './check.js'
 
 // Transform the updates object to an array of normalized updates
 export const normalizeUpdatesObj = function (updatesObj, length) {
