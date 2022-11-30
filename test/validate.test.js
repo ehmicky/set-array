@@ -2,7 +2,7 @@ import test from 'ava'
 import { set } from 'set-array'
 import { each } from 'test-each'
 
-import { INVALID_KEYS } from './helpers/invalid.js'
+import { INVALID_KEYS } from './helpers/invalid.test.js'
 
 const throwError = function () {
   throw new Error('test')
