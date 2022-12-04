@@ -1,8 +1,9 @@
 import test from 'ava'
-import { test as testArg } from 'set-array'
 import { each } from 'test-each'
 
 import { INVALID_KEYS } from './helpers/invalid.test.js'
+
+import { test as testArg } from 'set-array'
 
 each(
   [[], true, ...INVALID_KEYS.map((updateKey) => ({ [updateKey]: 'A' }))],

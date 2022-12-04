@@ -1,6 +1,7 @@
 import test from 'ava'
-import { set } from 'set-array'
 import { each } from 'test-each'
+
+import { set } from 'set-array'
 
 const setValue = function (valueA, valueB) {
   return valueB
