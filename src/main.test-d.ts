@@ -1,9 +1,4 @@
-import {
-  expectType,
-  expectAssignable,
-  expectNotAssignable,
-  expectError,
-} from 'tsd'
+import { expectType, expectAssignable, expectNotAssignable } from 'tsd'
 
 import { set, test, Index, Updates, Options } from 'set-array'
 
@@ -20,16 +15,26 @@ set([], { '0+': 'a' })
 set([], { '-12+': 'a' })
 set([], { '*': 'a' })
 
-expectError(set(true, {}))
-expectError(set([], true))
-expectError(set([], {}, true))
-expectError(set([], {}, { unknownOption: true }))
-expectError(set([], {}, { merge: true }))
-expectError(set(['a'], {}, { merge: (a: string, b: number) => b }))
-expectError(set(['a'], {}, { merge: (a: string, b: string) => true }))
-expectError(set([], { a: 'a' }))
-expectError(set([], { '--0': 'a' }))
-expectError(set([], { '0++': 'a' }))
+// @ts-expect-error
+set(true, {})
+// @ts-expect-error
+set([], true)
+// @ts-expect-error
+set([], {}, true)
+// @ts-expect-error
+set([], {}, { unknownOption: true })
+// @ts-expect-error
+set([], {}, { merge: true })
+// @ts-expect-error
+set(['a'], {}, { merge: (a: string, b: number) => b })
+// @ts-expect-error
+set(['a'], {}, { merge: (a: string, b: string) => true })
+// @ts-expect-error
+set([], { a: 'a' })
+// @ts-expect-error
+set([], { '--0': 'a' })
+// @ts-expect-error
+set([], { '0++': 'a' })
 
 expectType<boolean>(test({}))
 expectType<boolean>(test({ 0: 'a' }))
