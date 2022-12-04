@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { expectType, expectAssignable, expectNotAssignable } from 'tsd'
 
 import { set, test, type Index, type Updates, type Options } from 'set-array'
@@ -55,3 +56,4 @@ expectNotAssignable<Updates<string>>({ '*': true })
 expectAssignable<Options<string>>({})
 expectAssignable<Options<string>>({ merge: (a: string, b: string) => b })
 expectNotAssignable<Options<string>>({ unknownOption: true })
+/* eslint-enable @typescript-eslint/naming-convention */

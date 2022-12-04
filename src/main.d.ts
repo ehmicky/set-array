@@ -28,7 +28,7 @@ export interface Options<T> {
    * set(['a', 'b', 'c'], { 4: 'X' }, { merge }) // ['a', 'b', 'c', undefined, [undefined, 'X']]
    * ```
    */
-  merge?(oldValue: T, newValue: T): T
+  merge?: (oldValue: T, newValue: T) => T
 }
 
 /**
@@ -83,4 +83,4 @@ export function set<T>(
  * test('X') // false
  * ```
  */
-export function test(updates: any): boolean
+export function test(updates: unknown): boolean
