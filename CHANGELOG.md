@@ -1,3 +1,9 @@
+# 3.8.0
+
+## Features
+
+- Improve TypeScript types
+
 # 3.7.0
 
 ## Features
