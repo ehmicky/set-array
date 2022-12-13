@@ -6,7 +6,7 @@ import { groupBy } from './group.js'
 // Also, if several different negative indices have been bounded to 0, they
 // are sorted.
 // '*' updates are always applied first, so other updates can override them.
-export const concatUpdates = function (updates) {
+export const concatUpdates = (updates) => {
   if (updates.length === 1) {
     return updates
   }
@@ -16,7 +16,7 @@ export const concatUpdates = function (updates) {
   return [...updatesA].sort(secondSortFunc)
 }
 
-const concatGroup = function (updates) {
+const concatGroup = (updates) => {
   if (updates.length === 1) {
     return updates[0]
   }
@@ -28,12 +28,10 @@ const concatGroup = function (updates) {
   return { index, any, items }
 }
 
-const getItems = function ({ items }) {
-  return items
-}
+const getItems = ({ items }) => items
 
 // eslint-disable-next-line complexity
-const firstSortFunc = function (updateA, updateB) {
+const firstSortFunc = (updateA, updateB) => {
   if (updateA.negation < updateB.negation) {
     return -1
   }
@@ -54,7 +52,7 @@ const firstSortFunc = function (updateA, updateB) {
 }
 
 // eslint-disable-next-line complexity
-const secondSortFunc = function (updateA, updateB) {
+const secondSortFunc = (updateA, updateB) => {
   if (updateA.any < updateB.any) {
     return 1
   }

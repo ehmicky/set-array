@@ -3,19 +3,19 @@ import isPlainObj from 'is-plain-obj'
 import { testUpdatesObj } from './check.js'
 
 // Validate and normalize arguments
-export const normalizeInput = function (array, updatesObj, options) {
+export const normalizeInput = (array, updatesObj, options) => {
   validateArray(array)
   validateUpdatesObj(updatesObj)
   return normalizeOptions(options)
 }
 
-const validateArray = function (array) {
+const validateArray = (array) => {
   if (!Array.isArray(array)) {
     throw new TypeError(`First argument must be an array: ${array}`)
   }
 }
 
-const validateUpdatesObj = function (updatesObj) {
+const validateUpdatesObj = (updatesObj) => {
   const errorObj = testUpdatesObj(updatesObj)
 
   if (errorObj !== undefined) {
@@ -26,18 +26,14 @@ const validateUpdatesObj = function (updatesObj) {
 }
 
 const UPDATES_OBJ_ERRORS = {
-  plainObj({ updatesObj }) {
-    return `Second argument must be an object: ${updatesObj}`
-  },
-  key({ key }) {
-    return `Second argument's keys must be numbers or "*": "${key}"`
-  },
-  symbol({ symbol }) {
-    return `Second argument's keys must not be symbols: ${String(symbol)}`
-  },
+  plainObj: ({ updatesObj }) =>
+    `Second argument must be an object: ${updatesObj}`,
+  key: ({ key }) => `Second argument's keys must be numbers or "*": "${key}"`,
+  symbol: ({ symbol }) =>
+    `Second argument's keys must not be symbols: ${String(symbol)}`,
 }
 
-const normalizeOptions = function (options = {}) {
+const normalizeOptions = (options = {}) => {
   if (!isPlainObj(options)) {
     throw new TypeError(`Last options argument must be an object: ${options}`)
   }

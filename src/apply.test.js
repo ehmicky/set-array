@@ -3,13 +3,9 @@ import { each } from 'test-each'
 
 import { set } from 'set-array'
 
-const setValue = function (valueA, valueB) {
-  return valueB
-}
+const setValue = (valueA, valueB) => valueB
 
-const concatValue = function (valueA, valueB) {
-  return `${valueA}${valueB}`
-}
+const concatValue = (valueA, valueB) => `${valueA}${valueB}`
 
 each(
   [

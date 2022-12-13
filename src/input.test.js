@@ -5,7 +5,7 @@ import { INVALID_KEYS } from './helpers/invalid.test.js'
 
 import { set } from 'set-array'
 
-const throwError = function () {
+const throwError = () => {
   throw new Error('test')
 }
 

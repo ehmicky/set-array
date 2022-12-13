@@ -1,7 +1,7 @@
 // Apply each update to the array.
 // The original array is not mutated.
 // This uses imperative logic for performance.
-export const applyUpdates = function (array, updates, { merge }) {
+export const applyUpdates = (array, updates, { merge }) => {
   const { array: arrayA, updates: updatesA } = applyAny(array, updates, merge)
 
   const newArray = []
@@ -25,7 +25,7 @@ export const applyUpdates = function (array, updates, { merge }) {
 }
 
 // When a '*' update is present, it modifies all value of the array
-const applyAny = function (array, updates, merge) {
+const applyAny = (array, updates, merge) => {
   if (updates.length === 0 || !updates[0].any) {
     return { array, updates }
   }
@@ -37,13 +37,13 @@ const applyAny = function (array, updates, merge) {
   return { array: arrayA, updates: updatesA }
 }
 
-const applyUpdate = function ({
+const applyUpdate = ({
   update: { index, items },
   array,
   newArray,
   previousIndex,
   merge,
-}) {
+}) => {
   pushValues(array, newArray, previousIndex + 1, Math.ceil(index))
   const itemsA = applyMerge({ items, array, index, merge })
   pushValues(itemsA, newArray, 0, itemsA.length)
@@ -54,7 +54,7 @@ const applyUpdate = function ({
 // It is called even if the current value is `undefined`
 //  - Even if `ceiledIndex >= array.length`
 // It is not called if the new value is being prepended.
-const applyMerge = function ({ items, array, index, merge }) {
+const applyMerge = ({ items, array, index, merge }) => {
   if (merge === undefined || !Number.isInteger(index)) {
     return items
   }
@@ -64,7 +64,7 @@ const applyMerge = function ({ items, array, index, merge }) {
 }
 
 // eslint-disable-next-line max-params
-const pushValues = function (array, newArray, from, to) {
+const pushValues = (array, newArray, from, to) => {
   // eslint-disable-next-line fp/no-loops, fp/no-mutation, fp/no-let
   for (let index = from; index < to; index += 1) {
     // eslint-disable-next-line fp/no-mutating-methods

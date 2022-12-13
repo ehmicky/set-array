@@ -2,11 +2,9 @@ import isPlainObj from 'is-plain-obj'
 
 // Return whether the argument is an object that follows the shape expected
 // by `set()`.
-export const test = function (updatesObj) {
-  return testUpdatesObj(updatesObj) === undefined
-}
+export const test = (updatesObj) => testUpdatesObj(updatesObj) === undefined
 
-export const testUpdatesObj = function (updatesObj) {
+export const testUpdatesObj = (updatesObj) => {
   if (!isPlainObj(updatesObj)) {
     return { error: 'plainObj' }
   }
@@ -22,7 +20,7 @@ export const testUpdatesObj = function (updatesObj) {
   return testSymbols(updatesObj)
 }
 
-const testSymbols = function (updatesObj) {
+const testSymbols = (updatesObj) => {
   const [symbol] = Object.getOwnPropertySymbols(updatesObj)
 
   if (symbol !== undefined) {
@@ -30,9 +28,7 @@ const testSymbols = function (updatesObj) {
   }
 }
 
-const isValidKey = function (key) {
-  return key === ANY_KEY || UPDATE_KEY_REGEXP.test(key)
-}
+const isValidKey = (key) => key === ANY_KEY || UPDATE_KEY_REGEXP.test(key)
 
 // Special key targeting all array elements
 export const ANY_KEY = '*'

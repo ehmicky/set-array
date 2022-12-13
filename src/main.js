@@ -24,7 +24,7 @@ export { test } from './check.js'
 //  - Is declarative
 //  - Allows all of: replacing, patching, appending, omitting
 //  - Is friendly to CLI flags
-export const set = function (array, updatesObj, options) {
+export const set = (array, updatesObj, options) => {
   const optionsA = normalizeInput(array, updatesObj, options)
   const updates = normalizeUpdatesObj(updatesObj, array.length)
   const updatesA = concatUpdates(updates)
