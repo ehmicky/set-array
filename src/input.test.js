@@ -1,9 +1,9 @@
 import test from 'ava'
+import { set } from 'set-array'
 import { each } from 'test-each'
 
 import { INVALID_KEYS } from './helpers/invalid.test.js'
 
-import { set } from 'set-array'
 
 const throwError = () => {
   throw new Error('test')
