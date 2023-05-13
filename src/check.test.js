@@ -4,7 +4,6 @@ import { each } from 'test-each'
 
 import { INVALID_KEYS } from './helpers/invalid.test.js'
 
-
 each(
   [[], true, ...INVALID_KEYS.map((updateKey) => ({ [updateKey]: 'A' }))],
   ({ title }, updatesObj) => {

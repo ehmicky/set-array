@@ -2,7 +2,6 @@ import test from 'ava'
 import { set } from 'set-array'
 import { each } from 'test-each'
 
-
 const setValue = (valueA, valueB) => valueB
 
 const concatValue = (valueA, valueB) => `${valueA}${valueB}`

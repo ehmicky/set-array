@@ -2,7 +2,6 @@
 import { set, test, type Index, type Updates, type Options } from 'set-array'
 import { expectType, expectAssignable, expectNotAssignable } from 'tsd'
 
-
 expectType<never[]>(set([], {}))
 expectType<string[]>(set(['a'], {}))
 expectType<string[]>(set([], { 0: 'a' }))

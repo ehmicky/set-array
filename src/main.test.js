@@ -2,7 +2,6 @@ import test from 'ava'
 import { set } from 'set-array'
 import { each } from 'test-each'
 
-
 each(
   [
     [[], {}, []],
