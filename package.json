@@ -42,7 +42,10 @@
   ],
   "license": "MIT",
   "homepage": "https://www.github.com/ehmicky/set-array",
-  "repository": "ehmicky/set-array",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ehmicky/set-array.git"
+  },
   "bugs": {
     "url": "https://github.com/ehmicky/set-array/issues"
   },
