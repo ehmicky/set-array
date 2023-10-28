@@ -58,7 +58,7 @@
     "test-each": "^6.0.1"
   },
   "engines": {
-    "node": ">=16.17.0"
+    "node": ">=18.18.0"
   },
   "dependencies": {
     "is-plain-obj": "^4.1.0"
