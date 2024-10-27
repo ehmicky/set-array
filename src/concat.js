@@ -12,7 +12,6 @@ export const concatUpdates = (updates) => {
   }
 
   const updatesA = Object.values(groupBy(updates, 'index')).map(concatGroup)
-  // eslint-disable-next-line fp/no-mutating-methods
   return [...updatesA].sort(secondSortFunc)
 }
 
@@ -22,7 +21,6 @@ const concatGroup = (updates) => {
   }
 
   const [{ index, any }] = updates
-  // eslint-disable-next-line fp/no-mutating-methods
   const updatesA = [...updates].sort(firstSortFunc)
   const items = updatesA.flatMap(getItems)
   return { index, any, items }
@@ -30,7 +28,6 @@ const concatGroup = (updates) => {
 
 const getItems = ({ items }) => items
 
-// eslint-disable-next-line complexity
 const firstSortFunc = (updateA, updateB) => {
   if (updateA.negation < updateB.negation) {
     return -1
@@ -51,7 +48,6 @@ const firstSortFunc = (updateA, updateB) => {
   return 0
 }
 
-// eslint-disable-next-line complexity
 const secondSortFunc = (updateA, updateB) => {
   if (updateA.any < updateB.any) {
     return 1
