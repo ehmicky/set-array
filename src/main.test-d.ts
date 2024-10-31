@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { expectType, expectAssignable, expectNotAssignable } from 'tsd'
+import { expectAssignable, expectNotAssignable, expectType } from 'tsd'
 
-import { set, test, type Index, type Updates, type Options } from 'set-array'
+import { set, test, type Index, type Options, type Updates } from 'set-array'
 
 expectType<never[]>(set([], {}))
 expectType<string[]>(set(['a'], {}))
