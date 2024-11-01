@@ -67,6 +67,7 @@ const applyMerge = ({ items, array, index, merge }) => {
 const pushValues = (array, newArray, from, to) => {
   // eslint-disable-next-line fp/no-loops, fp/no-mutation, fp/no-let
   for (let index = from; index < to; index += 1) {
+    // eslint-disable-next-line fp/no-mutating-methods
     newArray.push(array[index])
   }
 }

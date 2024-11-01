@@ -19,6 +19,7 @@ const addGroup = (object, groups, propName) => {
     // eslint-disable-next-line no-param-reassign, fp/no-mutation
     groups[group] = [object]
   } else {
+    // eslint-disable-next-line fp/no-mutating-methods
     groups[group].push(object)
   }
 }

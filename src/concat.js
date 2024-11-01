@@ -12,6 +12,7 @@ export const concatUpdates = (updates) => {
   }
 
   const updatesA = Object.values(groupBy(updates, 'index')).map(concatGroup)
+  // eslint-disable-next-line fp/no-mutating-methods
   return [...updatesA].sort(secondSortFunc)
 }
 
@@ -21,6 +22,7 @@ const concatGroup = (updates) => {
   }
 
   const [{ index, any }] = updates
+  // eslint-disable-next-line fp/no-mutating-methods
   const updatesA = [...updates].sort(firstSortFunc)
   const items = updatesA.flatMap(getItems)
   return { index, any, items }
